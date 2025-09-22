@@ -51,4 +51,42 @@ function headerSectionAnimation() {
   );
 }
 
+function servicesSectionAnimation() {
+  const servicesTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".services-section",
+      start: "top 50%",
+      end: "top -50%",
+      scrub: true,
+    //   markers: true,
+    },
+    defaults: {
+      ease: "power2.out",
+      opacity: 0,
+    },
+  });
+
+  // section heading
+  servicesTl.from(".services-section-top", {
+    y: 50,
+  });
+
+  // left cards
+  servicesTl.from(".services-section .service-card-left", {
+    x: -100,
+    stagger: 0.3,
+  });
+
+  // right cards → starts at the same time as left cards
+  servicesTl.from(
+    ".services-section .service-card-right",
+    {
+      x: 100,
+      stagger: 0.3,
+    },
+    "<"
+  ); // ✅ "<" means start at same time as previous
+}
+
 headerSectionAnimation();
+servicesSectionAnimation();
